@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import { Box, Typography, Button, TextField } from "@mui/material";
 
-function YouTubeManager() {
+const YouTubeManager = ({ language, onResetLanguage }) => {
     const [videos, setVideos] = useState([]);
     const [url, setUrl] = useState("");
   
     const handleAddVideo = () => {
       setVideos([...videos, url]);
       setUrl("");
+      alert(`Submitted with language: ${language || "None"}`);
+      onResetLanguage();
     };
-  
+    // const handleSubmit = () => {
+    //   alert(`Submitted with language: ${language || "None"}`);
+    //   onResetLanguage();
+    // };
     return (
       <Box>
         <Typography variant="h6">Add YouTube Video</Typography>
+        <p>Selected Language: {language || "None"}</p>
+
         <TextField label="YouTube URL" value={url} onChange={(e) => setUrl(e.target.value)} fullWidth margin="normal" />
         <Button variant="contained" onClick={handleAddVideo}>Add Video</Button>
   
